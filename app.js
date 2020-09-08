@@ -8,7 +8,7 @@ app.engine("handlebars", handlebars({defaultLayout:'main'}));
 app.set("view engine", "handlebars");
 
 app.listen(port, () => {
-  db.sequelize.sync()
+  // db.sequelize.sync()
   console.log(`Express server listening on http://localhost:${port}`);
 });
 
