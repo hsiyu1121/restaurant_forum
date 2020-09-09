@@ -80,7 +80,7 @@ const adminController = {
             res.redirect('/admin/restaurants')
           })
       })
-  },
+    }
 
 }
 
