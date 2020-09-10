@@ -26,9 +26,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   // db.sequelize.sync()
-  console.log(`Express server listening on http://localhost:${port}`);
+  console.log(`Express server listening on http://localhost:${PORT}`);
 });
 
 require("./routes")(app, passport);
