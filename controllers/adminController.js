@@ -1,10 +1,27 @@
 const db = require("../models");
 const Restaurant = db.Restaurant;
+const User = db.User
 const fs = require("fs");
 const imgur = require("imgur-node-api");
 const IMGUR_CLIENT_ID = process.env.IMGUR_CLIENT_ID;
 
-let adminController = {
+const adminController = {
+  getUsers: (req, res) => {
+    return User.findAll({raw: true}).then(users => {
+      return res.render('admin/users', {users: users})
+    })
+  },
+
+  putUsers: (req, res) => {
+    return User.findByPk(req.params.id)
+      .then(user => {
+        user.update({isAdmin: user.isAdmin ? false : true })
+        req.flash('success_messages', 'user was successfully to update')
+      })
+      .then(() => res.redirect('/admin/users'))
+  },
+
+  //===============================
   getRestaurants: (req, res) => {
     return Restaurant.findAll({ raw: true }).then((restaurants) => {
       return res.render("admin/restaurants", { restaurants: restaurants });
@@ -80,8 +97,7 @@ let adminController = {
       imgur.setClientID(IMGUR_CLIENT_ID);
       imgur.upload(file.path, (err, img) => {
         return Restaurant.findByPk(req.params.id).then((restaurant) => {
-          restaurant
-            .update({
+          restaurant.update({
               name: req.body.name,
               tel: req.body.tel,
               address: req.body.address,
@@ -100,8 +116,7 @@ let adminController = {
       });
     } else {
       return Restaurant.findByPk(req.body.id).then((restaurant) => {
-        restaurant
-          .update({
+        restaurant.update({
             name: req.body.name,
             tel: req.body.tel,
             address: req.body.address,
