@@ -1,10 +1,11 @@
-# 餐廳評論網
+# [餐廳評論網](https://pure-taiga-06476.herokuapp.com/signin) 
 
 使用Node.js, Express, MySQL, Sequeilze 套件製作而成
 
 ![Alt text](https://github.com/hsiyu1121/restaurant_forum/blob/master/restaurant_forum.png)
 
 ## 功能清單
+
 * 使用者可以註冊自己的帳號 
 * 使用者操作錯誤，會給予適當的回應 
 * 管理者可以進入後台
@@ -40,7 +41,7 @@
   ``npm run dev``
 * 開啟瀏覽器輸入以下網址
 
-  ``http://localhost:3000``
+  ``http://localhost:3000/signin``
   
 ## 更改檔名 .env.example
  請將此檔案更名為 .env ，將可以順利運作。
