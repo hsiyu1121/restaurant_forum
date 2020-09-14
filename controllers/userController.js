@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs')
 const db = require('../models')
 const User = db.User
 
+
 const userController = {
   signUpPage: (req, res) => {
     return res.render('signup')

@@ -4,6 +4,16 @@ const User = db.User
 const fs = require("fs");
 const imgur = require("imgur-node-api");
 const IMGUR_CLIENT_ID = process.env.IMGUR_CLIENT_ID;
+const Handlebars = require('handlebars')
+
+Handlebars.registerHelper('isEqual', (user, value, options) => {
+  if(user === value) {
+    return options.fn(this)
+  } else {
+    return options.inverse(this)
+  }
+})
+
 
 const adminController = {
   getUsers: (req, res) => {
