@@ -22,7 +22,14 @@
 <br />
 <br />
 <h3>所有評論:</h3>
+<br />
 {{#each restaurant.Comments}}
+{{#if ../user.isAdmin}}
+<form action="/comments/{{this.id}}?_method=DELETE" method="POST" style="float:right;">
+  <button type="submit" class="btn btn-danger">刪除</button>
+</form>
+{{/if}}
+
 <blockquote class="blockquote mb-0">
   <h4>
     <a href="/users/{{this.User.id}}">
