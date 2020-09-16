@@ -10,7 +10,7 @@
         <li><strong>Opening_Hours:</strong>{{restaurant.opening_hours}}</li>
         <li><strong>Tel:</strong>{{restaurant.tel}}</li>
         <li><strong>Address:</strong>
-          <{{restaurant.address}} /li>
+          {{restaurant.address}} </li>
       </ul>
     </div>
   </div>
@@ -19,6 +19,34 @@
   </div>
   <hr>
 </div>
-<br>
-<br>
+<br />
+<br />
+<h3>所有評論:</h3>
+{{#each restaurant.Comments}}
+<blockquote class="blockquote mb-0">
+  <h4>
+    <a href="/users/{{this.User.id}}">
+      {{this.User.name}}
+    </a>
+  </h4>
+  <p>{{this.text}}</p>
+  <footer class="blockquote-footer">
+    {{moment this.createdAt}}
+  </footer>
+</blockquote>
+<hr>
+{{/each}}
+
+<br />
+<br />
+<form action="/comments" method="POST">
+  <div class="form-group">
+    <label for="text">留下評論：</label>
+    <textarea class="form-control" name="text" id="text" rows="3"></textarea>
+  </div>
+  <input type="hidden" name="restaurantId" value="{{restaurant.id}}">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<br />
+<br />
 <a href="javascript:history.back()">回上一頁</a>

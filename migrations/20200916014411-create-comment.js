@@ -27,7 +27,7 @@ module.exports = {
       }
     });
   },
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Comments');
+  down: (queryInterface, Sequelize) => {
+    queryInterface.dropTable('Comments');
   }
 };

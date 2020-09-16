@@ -33,7 +33,7 @@
       <td>
         <form action="/admin/users/{{this.id}}?_method=PUT" method="POST"
           onsubmit="return confirm('是否將{{this.email}}調整成user')">
-          <button type="submit" class="btn btn-link" {{#isEqual this.email 'root@example.com'}} disabled {{/isEqual}}>
+          <button type="submit" class="btn btn-link" {{#ifCond this.email 'root@example.com'}} disabled {{/ifCond}}>
             set as user
           </button>
         </form>
