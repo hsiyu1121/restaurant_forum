@@ -22,6 +22,12 @@ module.exports = (app, passport) => {
     res.redirect("/signin");
   };
 
+  //===========
+  app.get('/users/:id', authenticated, userController.getUser)
+  app.get('/users/:id/edit', authenticated, userController.editUser)
+  app.put('/users/:id', authenticated, upload.single('image'), userController.putUser)
+
+  //===========
   app.get("/", authenticated, (req, res) => res.redirect("/restaurants"));
   app.get("/restaurants", authenticated, restController.getRestaurants);
   app.get('/restaurants/:id', authenticated, restController.getRestaurant)
@@ -66,15 +72,12 @@ module.exports = (app, passport) => {
   );
   app.delete('/admin/restaurants/:id', authenticatedAdmin, adminController.deleteRestaurant)
 
-  //=================================
   app.get('/admin/categories', authenticatedAdmin, categoryController.getCategories)
   app.post('/admin/categories', authenticatedAdmin, categoryController.postCategory)
   app.get('/admin/categories/:id', authenticatedAdmin, categoryController.getCategories)
   app.put('/admin/categories/:id', authenticatedAdmin, categoryController.putCategory)
   app.delete('/admin/categories/:id', authenticatedAdmin, categoryController.deleteCategory)
   
-  //=================================
-
   app.get('/admin/users', authenticatedAdmin, adminController.getUsers)
   app.put('/admin/users/:id', authenticatedAdmin, adminController.putUsers)
 
