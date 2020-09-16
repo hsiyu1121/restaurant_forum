@@ -6,8 +6,27 @@
     <div class="right ml-4">
       <p>{{user.name}}</p>
       <p>{{user.email}}</p>
+      <p>{{user.Comments.length}}間已評論餐廳</p>
 
       <a href="/users/{{user.id}}/edit" class="btn btn-primary">edit</a>
     </div>
+  </div>
+</div>
+
+<hr />
+<br />
+<br />
+<div class="card">
+  <div class="card-header">
+    {{user.Comments.length}}間已評論餐廳
+  </div>
+  <div class="card-body row">
+    {{#each user.Comments}}
+    <div class=" ml-2">
+      <a href="/restaurants/{{this.Restaurant.id}}">
+        <img src="{{this.Restaurant.image}}" style="width:200px;">
+      </a>
+    </div>
+    {{/each}}
   </div>
 </div>
