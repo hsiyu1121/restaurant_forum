@@ -25,6 +25,15 @@
         class="btn btn-primary">加入最愛</button>
     </form>
     {{/if}}
+
+    {{#if isLiked}}
+    <form action="/like/{{restaurant.id}}?_method=DELETE" method="POST" style="display:inline;">
+      <button type="submit" class="btn btn-danger">unlike</button></form>
+    {{else}}
+    <form action="/like/{{restaurant.id}}" method="POST" style="display:inline;">
+      <button type="submit" class="btn btn-primary">like</button>
+    </form>
+    {{/if}}
   </div>
   <hr>
 </div>
