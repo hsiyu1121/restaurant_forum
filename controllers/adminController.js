@@ -61,7 +61,8 @@ const adminController = {
           opening_hours: req.body.opening_hours,
           description: req.body.description,
           image: file ? img.data.link : null,
-          CategoryId: req.body.categoryId
+          CategoryId: req.body.categoryId, 
+          viewCounts: req.body.viewCounts
         }).then((restaurant) => {
           req.flash("success_messages", "restaurant was successfully created");
           return res.redirect("/admin/restaurants");
@@ -75,7 +76,8 @@ const adminController = {
         opening_hours: req.body.opening_hours,
         description: req.body.description,
         image: null,
-        CategoryId: req.body.categoryId
+        CategoryId: req.body.categoryId, 
+        viewCounts: req.body.viewCounts
       }).then((restaurant) => {
         req.flash("success_messages", "restaurant was successfully created");
         res.redirect("/admin/restaurants");
@@ -126,7 +128,8 @@ const adminController = {
               opening_hours: req.body.opening_hours,
               description: req.body.description,
               image: file ? img.data.link : restaurant.image,
-              CategoryId: req.body.categoryId
+              CategoryId: req.body.categoryId, 
+              viewCounts: req.body.viewCounts
             })
             .then((restaurant) => {
               req.flash(
@@ -146,7 +149,8 @@ const adminController = {
             opening_hours: req.body.opening_hours,
             description: req.body.description,
             image: restaurant.image,
-            CategoryId: req.body.categoryId
+            CategoryId: req.body.categoryId, 
+            viewCounts: req.body.viewCounts
           })
           .then((restaurant) => {
             req.flash(
