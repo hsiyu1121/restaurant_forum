@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h1>{{restaurant.name}}</h1>
+        <small>[{{restaurant.Category.name}}]</small>
+      </div>
+      <div class="card-body">
+        <div>
+          <ul>
+            <li>
+              <p>評論數: {{restaurant.Comments.length}}</p>
+            </li>
+            <li>
+              <p>瀏覽次數: </p>
+            </li>
+            <li>
+              <p>收藏數: </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <a href="javascript:history.back()">回上一頁</a>
+  </div>
