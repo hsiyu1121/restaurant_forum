@@ -66,6 +66,10 @@ module.exports = (app, passport) => {
     authenticatedAdmin,
     adminController.editRestaurant
   );
+
+  app.post('/favorite/:restaurantId', authenticated, userController.addFavorite)
+  app.delete('/favorite/:restaurantId', authenticated, userController.removeFavorite)
+
   app.put(
     "/admin/restaurants/:id",
     authenticatedAdmin,
