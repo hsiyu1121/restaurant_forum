@@ -31,9 +31,11 @@
       </button></form>
     {{else}}
     <form action="/following/{{this.id}}" method="POST" style="display:contents;">
-      <button type="submit" class="btn btn-primary">
-        追蹤
-      </button>
+      {{#ifCond this.id ../user.id}}
+      <button type="submit" class="btn btn-secondary" disabled>我</button>
+      {{else}}
+      <button type="submit" class="btn btn-primary"> 追蹤 </button>
+      {{/ifCond}}
     </form>
 
     {{/if}}
