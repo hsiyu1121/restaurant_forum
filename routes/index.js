@@ -22,13 +22,7 @@ module.exports = (app, passport) => {
     res.redirect("/signin");
   };
 
-  //===========
-  app.get('/users/top', authenticated, userController.getTopUser)
-  app.get('/users/:id', authenticated, userController.getUser)
-  app.get('/users/:id/edit', authenticated, userController.editUser)
-  app.put('/users/:id', authenticated, upload.single('image'), userController.putUser)
 
-  //===========
   app.get("/", authenticated, (req, res) => res.redirect("/restaurants"));
   app.get("/restaurants", authenticated, restController.getRestaurants);
   app.get('/restaurants/feeds', authenticated, restController.getFeeds);
@@ -37,6 +31,14 @@ module.exports = (app, passport) => {
   
   app.post('/comments', authenticated, commentController.postComment)
   app.delete('/comments/:id', authenticatedAdmin, commentController.deleteComment)
+
+  //===========
+  app.get('/users/top', authenticated, userController.getTopUser)
+  app.get('/users/:id', authenticated, userController.getUser)
+  app.get('/users/:id/edit', authenticated, userController.editUser)
+  app.put('/users/:id', authenticated, upload.single('image'), userController.putUser)
+
+  //===========
 
   app.get("/admin", authenticatedAdmin, (req, res) =>
     res.redirect("/admin/restaurants")
@@ -73,6 +75,9 @@ module.exports = (app, passport) => {
 
   app.post('/like/:restaurantId', authenticated, userController.addLike)
   app.delete('/like/:restaurantId', authenticated, userController.removeLike)
+
+  app.post('/following/:userId', authenticated, userController.addFollowing)
+  app.delete('/following/:userId', authenticated, userController.removeFollowing)
 
   app.put(
     "/admin/restaurants/:id",
