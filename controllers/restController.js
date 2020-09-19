@@ -96,7 +96,8 @@ const restController = {
     return Restaurant.findByPk(req.params.id, {
       include: [
         Category, 
-        {model: Comment, include: [User]}
+        {model: Comment, include: [User]},
+        {model: User, as: 'FavoritedUsers'}
       ]
     }).then(restaurant => {
       restaurant.increment('viewCounts')
@@ -118,7 +119,7 @@ const restController = {
         FavoriteCount: r.FavoritedUsers.length,
         isFavorited: req.user.FavoritedRestaurants.map(r => r.id).includes(r.id)
       }))
-      restaurants = restaurants.sort((a, b) => b.FavoriteCount - a.FavoriteCount).splice(0, 10)
+      restaurants = restaurants.sort((a, b) => b.FavoriteCount - a.FavoriteCount).slice(0, 10)
       return res.render('topRestaurant', {restaurants: restaurants})
     })
   }

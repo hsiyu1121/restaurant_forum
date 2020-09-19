@@ -55,14 +55,21 @@ const userController = {
   },
 
   getUser: (req, res) => {
-    User.findByPk(req.user.id, {
+    const userSelf = req.user.id
+    return User.findByPk(req.user.id, {
       include: [
-        Comment, 
-        {model: Comment, include:[Restaurant]}
+        {model: Comment, include:[Restaurant]},
+        {model: Restaurant, as: 'FavoritedRestaurants'}, 
+        {model: User, as: 'Followers'},
+        {model: User, as: 'Followings'}
       ]
       })
       .then(user => {
-        return res.render('users', {user:user.toJSON(),})
+        const isFollowed = req.user.Followings.map(d => d.id).includes(user.id)
+        return res.render('users', 
+        {user:user.toJSON(), 
+        isFollowed: isFollowed, 
+        userSelf:userSelf })
       })
   },
 
@@ -163,7 +170,7 @@ const userController = {
       users = users.map(user => ({
         ...user.dataValues, 
         FollowerCount: user.Followers.length,
-        isFollowed: req.user.Followings.map(d => d.id).includes(user.id),
+        isFollowed: req.user.Followings.map(d => d.id).includes(user.id)
       }))
       users = users.sort((a, b) => b.FollowerCount - a.FollowerCount)
       return res.render('topUser', {users: users})
