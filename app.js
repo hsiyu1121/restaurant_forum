@@ -37,4 +37,4 @@ app.listen(PORT, () => {
   console.log(`Express server listening on http://localhost:${PORT}`);
 });
 
-require("./routes")(app, passport);
+require("./routes")(app);
