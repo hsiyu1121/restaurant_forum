@@ -6,9 +6,9 @@ const adminController = require('../controllers/api/adminController.js')
 const categoryController = require('../controllers/api/categoryController.js')
 
 router.get('/admin/restaurants', adminController.getRestaurants)
-router.get("/admin/restaurants/:id", adminController.getRestaurant)
+router.get('/admin/restaurants/:id', adminController.getRestaurant)
 router.post("/admin/restaurants", upload.single('image'), adminController.postRestaurant)
-router.delete('/admin/restaurants/:id',adminController.deleteRestaurant)
+router.delete('/admin/restaurants/:id', adminController.deleteRestaurant)
 
 
 
