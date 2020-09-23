@@ -21,6 +21,14 @@ const categoryController = {
     })
   },
 
+  getCategories: (req, res) => {
+    categoryService.getCategories(req, res, (data) => {
+      if(req.params.id){
+        return 
+      }
+    })
+  },
+
   postCategory:(req, res) => {
     if(!req.body.name) {
       req.flash('error_messages', "name didn't exist")
