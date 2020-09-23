@@ -10,7 +10,7 @@ const categoryService = {
             .then((category) => {
               return res.render('admin/categories', { 
                 categories: categories, 
-                category: category.toJSON() 
+                category: category
               })
             })
         } else {
