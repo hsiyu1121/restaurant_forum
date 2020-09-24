@@ -1,17 +1,17 @@
-if(process.env.NODE_ENV !== "production"){
-  require('dotenv').config()
-}
-
 const express = require("express");
 const app = express();
 const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
+const PORT = process.env.PORT || 3000
+if(process.env.NODE_ENV !== "production"){
+  require('dotenv').config()
+}
 const session = require("express-session");
 const flash = require("connect-flash");
 const methodOverride = require("method-override");
 const passport = require("./config/passport");
 const db = require("./models");
-const PORT = process.env.PORT || 3000
+
 
 
 app.engine("handlebars", handlebars({ 
