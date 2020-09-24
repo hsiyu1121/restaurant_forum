@@ -31,7 +31,7 @@ let categoryService = {
 
   putCategory: (req, res, callback) => {
     if (!req.body.name) {
-      callback({{status: 'error', message: "name didn't exist"}})
+      callback({status: 'error', message: "name didn't exist"})
     } else {
       return Category.findByPk(req.params.id)
         .then((category) => {
