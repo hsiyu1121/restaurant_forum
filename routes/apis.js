@@ -31,6 +31,7 @@ router.delete('/admin/categories/:id', authenticated, authenticatedAdmin, catego
 
 router.get('/users/top', authenticated, userController.getTopUser)
 router.get('/users/:id', authenticated, userController.getUser)
+router.put('/users/:id', authenticated, upload.single('image'), userController.putUser)
 
 
 

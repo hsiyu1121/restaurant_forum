@@ -29,6 +29,39 @@ const userService = {
       })
   },
 
+  putUser: (req, res, callback) => {
+    if (!req.body.name) {
+      return callback({status:'error', message:"name didn't exist"})
+    }
+
+    const { file } = req;
+    if (file) {
+      imgur.setClientID(IMGUR_CLIENT_ID);
+      imgur.upload(file.path, (err, img) => {
+        return User.findByPk(req.params.id).then((user) => {
+          user
+            .update({
+              name: req.body.name,
+              image: file ? img.data.link : null,
+            })
+            .then((user) => {
+              return callback({status:'success', message:"user was successfully to update"})
+            });
+        });
+      });
+    } else {
+      return User.findByPk(req.params.id).then((user) => {
+        user.update({
+            name: req.body.name,
+            image: user.image,
+          })
+          .then((user) => {
+            return callback({status:'success', message:"user was successfully to update"})
+          });
+      });
+    }
+  },
+
   getTopUser: (req, res, callback) => {
     return User.findAll({
       include: [{ model: User, as: "Followers" }],
@@ -44,5 +77,5 @@ const userService = {
   },
 
 }
-
+ 
 module.exports = userService
