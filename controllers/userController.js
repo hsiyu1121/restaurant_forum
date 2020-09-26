@@ -14,22 +14,9 @@ const userService = require('../services/userService.js')
 const userController = {
   
   getUser: (req, res) => {   
-    User.findByPk(req.params.id, {
-      include: [
-        {model: Comment, include:[Restaurant]},
-        {model: Restaurant, as: 'FavoritedRestaurants'}, 
-        {model: User, as: 'Followers'},
-        {model: User, as: 'Followings'}
-      ]
-      })
-      .then(user => {
-        const userSelf = req.user.id
-        const isFollowed = req.user.Followings.map(d => d.id).includes(user.id)
-        return res.render('users', 
-        {user:user.toJSON(), 
-        isFollowed: isFollowed, 
-        userSelf:userSelf })
-      })
+    userService.getUser(req, res, (data) => {
+      return res.render('users', data)
+    })
   },
 
   editUser: (req, res) => {

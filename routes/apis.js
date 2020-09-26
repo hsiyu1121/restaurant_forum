@@ -30,6 +30,7 @@ router.put('/admin/categories/:id', authenticated, authenticatedAdmin, categoryC
 router.delete('/admin/categories/:id', authenticated, authenticatedAdmin, categoryController.deleteCategory)
 
 router.get('/users/top', authenticated, userController.getTopUser)
+router.get('/users/:id', authenticated, userController.getUser)
 
 
 

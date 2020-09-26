@@ -47,7 +47,7 @@ router.get("/admin/restaurants", authenticatedAdmin, adminController.getRestaura
 router.get("/admin/restaurants/create", authenticatedAdmin, adminController.createRestaurant);
 router.post("/admin/restaurants", authenticatedAdmin, upload.single('image'), adminController.postRestaurant);
 router.get("/admin/restaurants/:id", authenticatedAdmin, adminController.getRestaurant);
-router.get("/admin/restaurants/:id/edit",authenticatedAdmin, adminController.editRestauran);
+router.get("/admin/restaurants/:id/edit",authenticatedAdmin, adminController.editRestaurant);
 
 router.post('/favorite/:restaurantId', authenticated, userController.addFavorite)
 router.delete('/favorite/:restaurantId', authenticated, userController.removeFavorite)
