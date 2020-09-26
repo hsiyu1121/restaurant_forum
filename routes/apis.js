@@ -29,7 +29,12 @@ router.post('/admin/categories', authenticated, authenticatedAdmin, categoryCont
 router.put('/admin/categories/:id', authenticated, authenticatedAdmin, categoryController.putCategory)
 router.delete('/admin/categories/:id', authenticated, authenticatedAdmin, categoryController.deleteCategory)
 
+router.get('/users/top', authenticated, userController.getTopUser)
+
+
+
 router.post('/signin', userController.signIn)
+router.post('/signup', userController.signUp)
 
 
 module.exports = router

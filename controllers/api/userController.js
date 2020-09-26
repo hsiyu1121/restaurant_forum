@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 const passportJWT = require('passport-jwt')
 const ExtractJwt = passportJWT.ExtractJwt
 const JwtStrategy = passportJWT.Strategy
+const userService = require('../../services/userService.js')
 
 let userController = {
   signIn: (req, res) => {
@@ -59,7 +60,15 @@ let userController = {
           }
         })
     }
+  },
+
+  getTopUser: (req, res) => {
+    userService.getTopUser(req, res, (data) => {
+      return res.json(data)
+    })
   }
+
+
 
 }
 
