@@ -1,4 +1,4 @@
-const commentService = require('../services/commentService.js')
+const commentService = require('../../services/commentService.js')
 
 const commentController = {
   postComment: (req, res) => {
