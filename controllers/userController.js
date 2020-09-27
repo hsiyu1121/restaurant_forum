@@ -35,47 +35,27 @@ const userController = {
   },
 
   addFavorite: (req, res) => {
-    return Favorite.create({
-      UserId: req.user.id,
-      RestaurantId: req.params.restaurantId,
-    }).then((restaurant) => {
-      return res.redirect("back");
-    });
+    userService.addFavorite(req, res, (data) => {
+      return res.redirect('back')
+    })
   },
 
   removeFavorite: (req, res) => {
-    return Favorite.findOne({
-      where: {
-        UserId: req.user.id,
-        RestaurantId: req.params.restaurantId,
-      },
-    }).then((favorite) => {
-      favorite.destroy().then((restaurant) => {
-        return res.redirect("back");
-      });
-    });
+    userService.removeFavorite(req, res, (data) => {
+      return res.redirect('back')
+    })
   },
 
   addLike: (req, res) => {
-    return Like.create({
-      UserId: req.user.id,
-      RestaurantId: req.params.restaurantId,
-    }).then((restaurant) => {
-      return res.redirect("back");
-    });
+    userService.addLike(req, res, (data) => {
+      return res.redirect('back')
+    })
   },
 
   removeLike: (req, res) => {
-    return Like.findOne({
-      where: {
-        UserId: req.user.id,
-        RestaurantId: req.params.restaurantId,
-      },
-    }).then((like) => {
-      like.destroy().then((restaurant) => {
-        return res.redirect("back");
-      });
-    });
+    userService.removeLike(req, res, (data) => {
+      return res.redirect('back')
+    })
   },
 
   getTopUser: (req, res) => {
@@ -85,25 +65,15 @@ const userController = {
   },
 
   addFollowing: (req, res) => {
-    return Followship.create({
-      followerId: req.user.id,
-      followingId: req.params.userId,
-    }).then((followship) => {
-      return res.redirect("back");
-    });
+    userService.addFollowing(req, res, (data) => {
+      return res.redirect('back')
+    })
   },
 
   removeFollowing: (req, res) => {
-    return Followship.findOne({
-      where: {
-        followerId: req.user.id,
-        followingId: req.params.userId,
-      },
-    }).then((followship) => {
-      followship.destroy().then((followship) => {
-        return res.redirect("back");
-      });
-    });
+    userService.removeFollowing(req, res, (data) => {
+      return res.redirect('back')
+    })
   },
 
   signUpPage: (req, res) => {

@@ -76,6 +76,72 @@ const userService = {
     })
   },
 
+  addFavorite: (req, res, callback) => {
+    return Favorite.create({
+      UserId: req.user.id,
+      RestaurantId: req.params.restaurantId,
+    }).then((restaurant) => {
+      return callback({status:'success', message:''})
+    });
+  },
+
+  removeFavorite: (req, res, callback) => {
+    return Favorite.findOne({
+      where: {
+        UserId: req.user.id,
+        RestaurantId: req.params.restaurantId,
+      },
+    }).then((favorite) => {
+      favorite.destroy().then((restaurant) => {
+        return callback({status:'success', message:''})
+      })
+    })
+  },
+
+  addLike: (req, res, callback) => {
+    return Like.create({
+      UserId: req.user.id,
+      RestaurantId: req.params.restaurantId,
+    }).then((restaurant) => {
+      return callback({status:'success', message:''})
+    });
+  },
+
+  removeLike: (req, res, callback) => {
+    return Like.findOne({
+      where: {
+        UserId: req.user.id,
+        RestaurantId: req.params.restaurantId,
+      },
+    }).then((like) => {
+      like.destroy().then((restaurant) => {
+        return callback({status:'success', message:''})
+      });
+    });
+  },
+
+  addFollowing: (req, res, callback) => {
+    return Followship.create({
+      followerId: req.user.id,
+      followingId: req.params.userId,
+    }).then((followship) => {
+      return callback({status:'success', message:''})
+    });
+  },
+
+  removeFollowing: (req, res, callback) => {
+    return Followship.findOne({
+      where: {
+        followerId: req.user.id,
+        followingId: req.params.userId,
+      },
+    }).then((followship) => {
+      followship.destroy().then((followship) => {
+        return callback({status:'success', message:''})
+      });
+    });
+  },
+
 }
  
 module.exports = userService
