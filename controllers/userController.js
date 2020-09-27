@@ -19,8 +19,9 @@ const userController = {
   },
 
   editUser: (req, res) => {
-    return User.findByPk(req.params.id).then((user) => {
-      return res.render("edit");
+    return User.findByPk(req.params.id)
+      .then((user) => {
+        return res.render("edit");
     });
   },
 
@@ -28,6 +29,7 @@ const userController = {
     userService.putUser(req, res, (data) => {
       if (data['status'] === 'success') {
         req.flash('success_messages', data['message'])
+        return res.redirect('back')
       }
       res.redirect(`/users/${user.id}`);
     })

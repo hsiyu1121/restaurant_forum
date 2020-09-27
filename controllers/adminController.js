@@ -29,6 +29,10 @@ const adminController = {
 
   putUsers: (req, res) => {
     adminService.putUsers(req, res, (data) => {
+      if (data['status'] === 'error') {
+        req.flash('error_messages', data['message'])
+        res.redirect('/admin/users')
+      }
       req.flash('success_messages', data['message'])
       res.redirect('/admin/users')
     })
