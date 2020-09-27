@@ -27,15 +27,17 @@ router.get('/restaurants/top', authenticated, restController.getTopRestaurant)
 router.get('/restaurants/:id', authenticated, restController.getRestaurant)
 router.get('/restaurants/:id/dashboard', authenticated, restController.getDashboard)
 
-
-
-
 //admin router
 router.get('/admin/restaurants', authenticated, authenticatedAdmin, adminController.getRestaurants)
 router.get('/admin/restaurants/:id', authenticated, authenticatedAdmin, adminController.getRestaurant)
 router.post("/admin/restaurants",authenticated, authenticatedAdmin, upload.single('image'), adminController.postRestaurant)
 router.delete('/admin/restaurants/:id', authenticated, authenticatedAdmin, adminController.deleteRestaurant)
 router.put("/admin/restaurants/:id", authenticated, authenticatedAdmin, upload.single('image'), adminController.putRestaurant)
+router.get('/admin/users', authenticatedAdmin, adminController.getUsers)
+router.put('/admin/users/:id', authenticatedAdmin, adminController.putUsers)
+router.get("/admin/restaurants/create", authenticatedAdmin, adminController.createRestaurant);
+router.get("/admin/restaurants/:id/edit",authenticatedAdmin, adminController.editRestaurant);
+
 
 //category router
 router.get('/admin/categories', authenticated, authenticatedAdmin, categoryController.getCategories)

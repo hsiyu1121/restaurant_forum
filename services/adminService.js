@@ -106,8 +106,50 @@ const adminService = {
             callback({ status: 'success', message: '' })
           })
       })
-  }
+  },
 
-}
+  getUsers: (req, res, callback) => {
+    return User.findAll({raw: true}).then(users => {
+      return callback({
+        users: users
+      })
+    })
+  },
+
+  putUsers: (req, res, callback) => {
+    return User.findByPk(req.params.id)
+      .then(user => {
+        user.update({isAdmin: user.isAdmin ? false : true })
+        .then(user => {
+          callback({status: 'success', message: 'user was successfully to update'})
+        })
+      })
+  },
+
+  createRestaurant: (req, res, callback) => {
+    Category.findAll({
+      raw:true, 
+      nest:true
+    }).then(categories => {
+      return callback({categories:categories})
+    })
+  },
+
+  editRestaurant: (req, res, callback) => {
+    Category.findAll({
+      raw: true, 
+      nest: true
+    }).then(categories => {
+      return Restaurant.findByPk(req.params.id)
+        .then(restaurant => { 
+          return callback({
+            categories: categories, 
+            restaurant: restaurant 
+          })
+        })
+    })   
+  },
+
+} 
 
 module.exports = adminService
