@@ -140,7 +140,7 @@ const userService = {
         return callback({status:'success', message:''})
       });
     });
-  },
+  }
 
 }
  

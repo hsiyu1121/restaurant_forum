@@ -12,7 +12,6 @@ const IMGUR_CLIENT_ID = process.env.IMGUR_CLIENT_ID
 const userService = require('../services/userService.js')
 
 const userController = {
-  
   getUser: (req, res) => {   
     userService.getUser(req, res, (data) => {
       return res.render('users', data)
